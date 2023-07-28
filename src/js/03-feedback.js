@@ -23,10 +23,22 @@ function onSubmit(e) {
 function saveData() {
   const savedText = localStorage.getItem(TEXT_KEY);
   const parsedText = JSON.parse(savedText);
+
   if (savedText) {
-    form.email.value = parsedText.email;
-    form.message.value = parsedText.message;
-    text['email'] = parsedText.email;
-    text['message'] = parsedText.message;
+    if (savedText.includes('email')) {
+      form.email.value = parsedText.email;
+      text['email'] = parsedText.email;
+    } else {
+      form.email.value = '';
+      text['email'] = '';
+    }
+
+    if (savedText.includes('message')) {
+      form.message.value = parsedText.message;
+      text['message'] = parsedText.message;
+    } else {
+      form.message.value = '';
+      text['message'] = '';
+    }
   }
 }
